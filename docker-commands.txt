@@ -1,0 +1,4 @@
+docker run -d -p 9000:9000 --restart always -v /var/run/docker.sock:/var/run/docker.sock -v /opt/portainer:/data portainer/portainer
+docker run -d -p 443:443 --name openvas mikesplain/openvas
+docker run --rm -it -v ~/mastiff-workdir:/home/nonroot/workdir remnux/mastiff
+docker run -it -p 8000:8000 opensecurity/mobile-security-framework-mobsf:latest
