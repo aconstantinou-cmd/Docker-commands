@@ -1,3 +1,27 @@
+Add the following lines to your .zshrc config file:
+
+alias dockershell="docker run --rm -i -t --entrypoint=/bin/bash"  
+alias dockershellsh="docker run --rm -i -t --entrypoint=/bin/sh"
+alias nginxhere='docker run --rm -it -p 80:80 -p 443:443 -v "${PWD}:/srv/data" rflathers/nginxserve'
+alias metasploit='docker run --rm -it -v "${HOME}/.msf4:/home/msf/.msf4" metasploitframework/metasploit-framework ./msfconsole'
+alias metasploitports='docker run --rm -it -v "${HOME}/.msf4:/home/msf/.msf4" -p 8443-8500:8443-8500 metasploitframework/metasploit-framework ./msfconsole'
+alias msfvenomhere='docker run --rm -it -v "${HOME}/.msf4:/home/msf/.msf4" -v "${PWD}:/data" metasploitframework/metasploit-framework ./msfvenom'
+
+function dockershellhere() {  
+    dirname=${PWD##*/}
+    docker run --rm -it --entrypoint=/bin/bash -v `pwd`:/${dirname} -w /${dirname} "$@"
+}
+
+function dockershellshhere() {  
+    dirname=${PWD##*/}
+    docker run --rm -it --entrypoint=/bin/sh -v `pwd`:/${dirname} -w /${dirname} "$@"
+}
+
+
+
+A few of the docker commands I like to use every now and then:
+
+
 docker run -d -p 9000:9000 --restart always -v /var/run/docker.sock:/var/run/docker.sock -v /opt/portainer:/data portainer/portainer
 docker run -d -p 443:443 --name openvas mikesplain/openvas
 docker run --rm -it -v ~/mastiff-workdir:/home/nonroot/workdir remnux/mastiff
